@@ -12,7 +12,7 @@ SERVLET -- proveen uyn rpotocola de peticion/respuesta; que consiste en ////init
 
 archivos importantes; index.html (todo lo relacionado al deploy de la pagina web) // POM.xml (todo lo relacionado al funcionamiento de la pagina junto con JAVA)
 
-Metodos/////////////////////////////
+//////////////////////Metodos/////////////////////////////
 
 Dentro de los metodos, para la solicitud de formularios se encuentran 2 principales; 'GET' y 'POST' en donde 'GET' los envios de campos y sus valores van pegados a la URL;
 y en 'POST' los envios de campos y sus valores son anexados a el cuerpo de la peticion (mayor seguridad).
@@ -28,3 +28,9 @@ paquete 'CONTROLLER' contendra todas los controles/servlets que reciban o respon
 paquete 'ENTITY' contendra todos los JAVABEANS que funcionaran como entidades para mapear una bdd.
 
 min 4.06.23 video 1
+
+/////////////////////////////////////
+bdd sakila - pendiente 
+/////////////////////////////////////
+
+
