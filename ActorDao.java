@@ -11,7 +11,7 @@ import org.Banxico.Proyecto1.entity.Actor;
 
 public class ActorDao {
 
-	public void save(Actor actor) { //metodo para hacer INSERT
+	public static void save(Actor actor) { //metodo para hacer INSERT
 		
 		String query = "INSERT INTO actor("
 				+ "fist_name, last_name)"
@@ -34,7 +34,7 @@ public class ActorDao {
 		}
 	}
 	
-	public List<Actor> getAll() { //Metodo para hacer un Select
+	public static List<Actor> getAll() { //Metodo para hacer un Select
 		
 		String query = "SELECT * FROM actor";
 		
@@ -68,7 +68,7 @@ public class ActorDao {
 		
 	}
 	
-	public void update(Actor actor) { //Metodo para hacer un Update con una referencia de id
+	public static void update(Actor actor) { //Metodo para hacer un Update con una referencia de id
 		
 		String query = "UPDATE actor SET first_name = ?, last_name = ? WHERE actor_id = ?";
 		Connection connection = ConnectionUtil.getConnection();
@@ -92,7 +92,7 @@ public class ActorDao {
 		
 	}
 	
-	public void delete(Integer actor_id) { //Metodo para hacer un Delete con una referencia de actor_id
+	public static void delete(Integer actor_id) { //Metodo para hacer un Delete con una referencia de actor_id
 		
 		String query = "DELETE FROM actor WHERE actor_id = ?";
 		
