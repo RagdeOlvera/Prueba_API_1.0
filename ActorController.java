@@ -1,38 +1,86 @@
 package org.Banxico.Proyecto1.controller;
 
+import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 
 import org.Banxico.Proyecto1.dao.ActorDao;
 import org.Banxico.Proyecto1.entity.Actor;
 
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
+
+@WebServlet("/actores")
 
 public class ActorController extends HttpServlet {
 
+	public static int ELIMINAR_ACTOR = 1;
+	public static int CARGA_ACTOR = 2; 
+	public static int ACTUALIZAR_ACTOR = 3;
+	public static int GUARDAR_ACTOR = 3;
+	
 	public void doGet(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ServletException, IOException {
 		
+
+		Integer tipoOperacion = 0;
+
+		if (request.getParameter("tipoOperacion") != null) {
+			tipoOperacion = Integer.parseInt(request.getParameter("tipoOperacion"));
+		}
+		
+		Integer id = 0; 
+		
+		if (request.getParameter("id") != null) {
+			id = Integer.parseInt(request.getParameter("id"));
+		}
+		
+		
+		if (tipoOperacion == ELIMINAR_ACTOR) {
+	
+			delete(request, response, 1);
+		} else if(tipoOperacion ==  CARGA_ACTOR){
+			loadActor(request, response, id); //carga los datos del actor actual en el formulario para modificar
+		}
+
 		listAll(request, response);
-		delete(request, response, 1);
-		save(request, response);
-		update(request, response);
 		
-		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);
 		
 		
 	}	
 	
 	public void doPost(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) throws ServletException, IOException {
 		
-		listAll(request, response);
+
+		Integer tipoOperacion = 0;
+
+		if (request.getParameter("tipoOperacion") != null) {
+			tipoOperacion = Integer.parseInt(request.getParameter("tipoOperacion"));
+		}
+		
+		if (tipoOperacion == GUARDAR_ACTOR) {
+			save(request, response);
+		}else if(tipoOperacion == ACTUALIZAR_ACTOR) {
+			update(request, response);
+		}
+		
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+		dispatcher.forward(request, response);
+		
 		
 	}
 
+	/*CRUD*/
 	
 	private void listAll(HttpServletRequest request,
 			HttpServletResponse response) {
@@ -73,4 +121,9 @@ public class ActorController extends HttpServlet {
 		
 	}
 	
+	private void loadActor(HttpServletRequest request,
+			HttpServletResponse response, 
+			Integer id) {
+		request.setAttribute("actor", ActorDao.findById(id));
+	}
 }
