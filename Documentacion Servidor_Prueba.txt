@@ -34,3 +34,57 @@ bdd sakila - pendiente
 /////////////////////////////////////
 
 
+Crecion de los metodos select y insert del crud en html;;
+aun contiene errores al intentar acceder a la url /actores que hace referencia a la clase ActorController, 
+posiblemente debido a la falta de la bdd y la comunicacion con esta, ya que el codigo parece correcto.
+
+
+EJERCICIO /// ELIMINAR A UN ACTOR DESDE EL INDEX
+
+
+
+----------------------------------------------------
+----------------------------------------------------
+
+Error, no se puede acceder al servlet... 
+posiblemente debido a las diferentes versiones de jdk
+
+----------------------------------------------------
+----------------------------------------------------
+
+Error solucionado, servidor CRUD funcional.
+Fin de proyecto 1
+////////////////////
+
+Inicio Proyecto2
+----------------------------------------------------
+----------------------------------------------------
+
+Proyecto similar, de igual manera se usara un servidor glassfish para alzar la pagina web, 
+sin embargo en este caso se va a hacer por medio de ejb con java beans;
+se usaran varias capas para hacerlo desde la parte interna hasta lograr hacerlo funcional... 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
