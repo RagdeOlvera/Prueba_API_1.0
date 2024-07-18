@@ -64,7 +64,7 @@ Proyecto similar, de igual manera se usara un servidor glassfish para alzar la p
 sin embargo en este caso se va a hacer por medio de ejb con java beans;
 se usaran varias capas para hacerlo desde la parte interna hasta lograr hacerlo funcional... 
 
-
+VIDEO 2 MIN 5.18.54
 
 
 

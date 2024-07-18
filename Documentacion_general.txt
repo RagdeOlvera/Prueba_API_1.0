@@ -1,0 +1,28 @@
+EJB
+
+Stateless Bean : 
+NO mantiene informacion del usuario a lo largo de la sesion...
+
+Clase JAVA que se  usa para implementar los metodos del negocio 
+Usara la anotacion @Stateless
+Usara una o mas interfaz de 'vista de negocio'
+
+Es una interfaz que va a implementar metodos de negocios mediane una clase JAVA
+Existen 2 tipos de EJB Stateless Bean:
+-Local: Es un EJB que puede acceder a otro EJB dentro del mismo Java Virtual Machine (Servidor)
+-Remoto: Es un EJB que puede acceder a otro EJB fuera del JVM
+
+
+
+Stateful Bean:
+Mantiene informacion del usuario a lo largo de la sesion...
+
+Clase JAVA que se  usa para implementar los metodos del negocio 
+Usara la anotacion @Statefull
+Usara una o mas interfaz de 'vista de negocio'
+
+Session Bean que permite mantener un estado conversacional con el cliente.
+
+
+La competencia de EJB es Hibernate, ambas son herramientas ORM (Object Relational Mapping)
+
