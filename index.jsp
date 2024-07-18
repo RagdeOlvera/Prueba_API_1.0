@@ -15,25 +15,33 @@
 			
 			<%
 			Actor loadedActor = (Actor)request.getAttribute("actor");
+			String url = "actores?tipoOperacion=3";
+			
 			if (loadedActor == null){
+				url = "actores?tipoOperacion=4";
 				loadedActor = new Actor();
 				loadedActor.setFirstName("");
 				loadedActor.setLastName("");
-			}
+				loadedActor.setActorId(0);
+				}
 			
 			%>
 			
-			
-			<form action="actores" method="post">
+			<form action="<%=url%>" method="post"  >
 				<table border="1">
 					<tr>
 						<td>Nombre:</td>
 						<td>
 							<input 
+							type="hidden"
+							name= "id"
+						 	value="<%= loadedActor.getActorId()%>" />
+							
+							<input 
 							type="text"
 							name= "firstName"
 							id= "firstName"
-							value="<% loadedActor.getFirstName();%>"
+						 	value="<%= loadedActor.getFirstName()%>" 
 							required />
 						</td>
 					</tr>
@@ -44,7 +52,7 @@
 							type="text"
 							name= "lastName"
 							id= "lastName"
-							value="<% loadedActor.getLastName(); %>"
+							value="<%= loadedActor.getLastName()%>"
 							required />
 						</td>
 					</tr>
@@ -101,29 +109,5 @@
 			</table>
 		</div>
 		
-		<div> <%-- Seccion Metodo delete (Delete) --%>
-			
-			<h3> Eliminacion de Actores</h3>
-			<form action="actores" method="post">
-			
-			<table border="1">	
-				<tr>
-					<td>Actor_ID</td>
-					<td>
-						<input 
-						type="text"
-						name= "id"
-						id= "id"		
-						required />
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<button type="submit">Eliminar</button>
-					</td>
-				</tr>
-			</table>
-			</form>
-		</div>
 	</body>
 </html>

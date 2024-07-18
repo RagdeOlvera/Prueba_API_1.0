@@ -23,19 +23,18 @@ public class ActorController extends HttpServlet {
 	public static int ELIMINAR_ACTOR = 1;
 	public static int CARGA_ACTOR = 2; 
 	public static int ACTUALIZAR_ACTOR = 3;
-	public static int GUARDAR_ACTOR = 3;
+	public static int GUARDAR_ACTOR = 4;
 	
 	public void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		
 
 		Integer tipoOperacion = 0;
+		Integer id = 0;
 
 		if (request.getParameter("tipoOperacion") != null) {
 			tipoOperacion = Integer.parseInt(request.getParameter("tipoOperacion"));
 		}
-		
-		Integer id = 0; 
 		
 		if (request.getParameter("id") != null) {
 			id = Integer.parseInt(request.getParameter("id"));
@@ -44,8 +43,10 @@ public class ActorController extends HttpServlet {
 		
 		if (tipoOperacion == ELIMINAR_ACTOR) {
 	
-			delete(request, response, 1);
+			delete(request, response, id);
+			
 		} else if(tipoOperacion ==  CARGA_ACTOR){
+			
 			loadActor(request, response, id); //carga los datos del actor actual en el formulario para modificar
 		}
 
@@ -63,16 +64,12 @@ public class ActorController extends HttpServlet {
 
 		Integer tipoOperacion = 0;
 
-		if (request.getParameter("tipoOperacion") != null) {
+		if (request.getParameter("tipoOperacion") != null) {	//valida el tipo de operacion que recibe 
 			tipoOperacion = Integer.parseInt(request.getParameter("tipoOperacion"));
 		}
 		
-		if (tipoOperacion == GUARDAR_ACTOR) {
-			save(request, response);
-		}else if(tipoOperacion == ACTUALIZAR_ACTOR) {
-			update(request, response);
-		}
-		
+		save(request, response, tipoOperacion);
+		listAll(request, response);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
@@ -82,7 +79,7 @@ public class ActorController extends HttpServlet {
 
 	/*CRUD*/
 	
-	private void listAll(HttpServletRequest request,
+	private void listAll(HttpServletRequest request, //revisado funcionamiento correcto
 			HttpServletResponse response) {
 		
 		List<Actor> actores = ActorDao.getAll();
@@ -90,7 +87,7 @@ public class ActorController extends HttpServlet {
 		
 	}
 	
-	private void delete(HttpServletRequest request,
+	private void delete(HttpServletRequest request, //revisado Funcionamiento correcto
 			HttpServletResponse response,
 			Integer id) {
 		
@@ -99,17 +96,23 @@ public class ActorController extends HttpServlet {
 	}
 	
 	private void save(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response,
+			Integer tipoOperacion) {
 		
 		Actor actor = new Actor();
 		actor.setFirstName(request.getParameter("firstName"));
 		actor.setLastName(request.getParameter("lastName"));
 		
-		ActorDao.save(actor);
+		if(tipoOperacion == GUARDAR_ACTOR) {
+			ActorDao.save(actor);
+		}else if (tipoOperacion == ACTUALIZAR_ACTOR) {
+			actor.setActorId(Integer.parseInt(request.getParameter("id")));
+			ActorDao.update(actor);
+		}
 		
 	}
 	
-	
+	/*
 	private void update(HttpServletRequest request,
 			HttpServletResponse response) {
 		
@@ -119,11 +122,12 @@ public class ActorController extends HttpServlet {
 		
 		ActorDao.update(actor);
 		
-	}
+	}*/
 	
 	private void loadActor(HttpServletRequest request,
 			HttpServletResponse response, 
 			Integer id) {
+		
 		request.setAttribute("actor", ActorDao.findById(id));
 	}
 }

@@ -11,14 +11,17 @@ import org.Banxico.Proyecto1.entity.Actor;
 
 public class ActorDao {
 
+
+
 	public static void save(Actor actor) { //metodo para hacer INSERT
 		
 		String query = "INSERT INTO actor2("
-				+ "fist_name, last_name)"
+				+ "first_name, last_name)"
 				+ "values(?, ?)"; //se mandan a llamar a los statements que estan mas abajo en el codigo...
+
 		
-		Connection connection = ConnectionUtil.getConnection();
 		try {
+			Connection connection = ConnectionUtil.getConnection();		
 			PreparedStatement statement = connection.prepareStatement(query); //statements se solicictan arriba en el codigo en los values...
 			statement.setString(1, actor.getFirstName());
 			statement.setString(2, actor.getLastName());
@@ -96,9 +99,9 @@ public class ActorDao {
 		
 		String query = "DELETE FROM actor2 WHERE actor_id = ?";
 		
-		
+
+		Connection connection = ConnectionUtil.getConnection();
 		try {
-			Connection connection = ConnectionUtil.getConnection();
 			PreparedStatement statement = connection.prepareStatement(query);
 			
 			statement.setInt(1, actor_id);
@@ -117,7 +120,7 @@ public class ActorDao {
 	}
 	public static Actor findById(Integer actor_id) { 
 		
-		String query = "SELECT * FROM actor WHERE actor_id = ?";
+		String query = "SELECT * FROM actor2 WHERE actor_id = ?";
 		Actor actor = new Actor();
 		
 		try {
