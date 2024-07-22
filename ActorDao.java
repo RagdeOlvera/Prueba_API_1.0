@@ -15,7 +15,7 @@ public class ActorDao {
 
 	public static void save(Actor actor) { //metodo para hacer INSERT
 		
-		String query = "INSERT INTO actor2("
+		String query = "INSERT INTO actor("
 				+ "first_name, last_name)"
 				+ "values(?, ?)"; //se mandan a llamar a los statements que estan mas abajo en el codigo...
 
@@ -39,7 +39,7 @@ public class ActorDao {
 	
 	public static List<Actor> getAll() { //Metodo para hacer un Select
 		
-		String query = "SELECT * FROM actor2";
+		String query = "SELECT * FROM actor";
 	
 		
 		List<Actor> actores = new ArrayList<>();
@@ -73,7 +73,7 @@ public class ActorDao {
 	
 	public static void update(Actor actor) { //Metodo para hacer un Update con una referencia de id
 		
-		String query = "UPDATE actor2 SET first_name = ?, last_name = ? WHERE actor_id = ?";
+		String query = "UPDATE actor SET first_name = ?, last_name = ? WHERE actor_id = ?";
 		
 		try {
 			Connection connection = ConnectionUtil.getConnection();
@@ -97,7 +97,7 @@ public class ActorDao {
 
 	public static void delete(Integer actor_id) { //Metodo para hacer un Delete con una referencia de actor_id
 		
-		String query = "DELETE FROM actor2 WHERE actor_id = ?";
+		String query = "DELETE FROM actor WHERE actor_id = ?";
 		
 
 		Connection connection = ConnectionUtil.getConnection();
@@ -120,7 +120,7 @@ public class ActorDao {
 	}
 	public static Actor findById(Integer actor_id) { 
 		
-		String query = "SELECT * FROM actor2 WHERE actor_id = ?";
+		String query = "SELECT * FROM actor WHERE actor_id = ?";
 		Actor actor = new Actor();
 		
 		try {
